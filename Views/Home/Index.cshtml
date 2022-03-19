@@ -1,0 +1,56 @@
+﻿@{
+    ViewData["Title"] = "Vote on Movies";
+}
+
+@model List<Movie>
+
+<div class="text-center">
+    <h1 class="display-4">Shumway Workman Vote for Movies</h1>
+</div>
+<br /><br />
+<table class="table table-sm table-striped ">
+    <thead class="thead-dark">
+        <tr>
+            <td></td>
+            <td></td>
+            <td>Title</td>
+            <td>Category</td>
+            <td>Length (minutes)</td>
+            <td>Number of Votes</td>
+            <td></td>
+            <td></td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var m in Model)
+        {
+        <tr>
+            <td><a asp-controller="Home" asp-action="Edit" asp-route-movieid="@m.MovieId" class="btn btn-primary btn-small btn-info">Edit</a></td>
+            <td><a asp-controller="Home" asp-action="VoteConfirmation" asp-route-movieid="@m.MovieId" class="btn btn-primary btn-small btn-Secondary">Vote</a></td>
+            @*<td><a asp-controller="Home" asp-action="Voted" asp-route-movieid="@m.MovieId" class="btn btn-primary btn-small ">Vote</a></td>*@
+            @*<td>
+                <form method="post" asp-action="Vote" asp-route-movieid="@m.MovieId"><button class="btn btn-small btn-info" type="submit" value="Submit">Vote</button></form>
+            </td>*@
+
+            <td>@m.Title</td>
+            <td>@m.Category.CategoryName</td>
+            <td>@m.Length</td>
+            <td>@m.NumVotes</td>
+            <td>
+                <form method="post" asp-action="ResetVote" asp-route-movieid="@m.MovieId"><button class="btn btn-small btn-dark" type="submit" value="Submit">Reset Vote</button></form>
+            </td>
+            <td>
+                <form method="post" asp-action="Delete" asp-route-movieid="@m.MovieId"><button class="btn btn-small btn-danger" type="submit" value="Submit">Delete</button></form>
+            </td>
+        </tr>
+
+        }
+
+     </tbody>
+
+
+    </table>
+<br /><br />
+<form method="get">
+    <button type="submit" class="btn btn-small btn-success" asp-action="AddMovie">Add A Movie</button>
+</form>

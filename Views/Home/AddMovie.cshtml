@@ -1,0 +1,38 @@
+﻿@* Trevor Shumway, Wed Jan 26*@
+@{
+    ViewData["Title"] = "Add a Movie";
+}
+@model MovieVoting.Models.Movie
+<div>
+    <h2>Add a movie to be voted on!</h2>
+    <fieldset>
+        <form method="post">
+            <table>
+                <tr>
+                    <td><label asp-for="Title">Title:</label></td>
+                    <td><input asp-for="Title" id="title" /></td>
+                </tr>
+
+                <tr>
+                    <td><label asp-for="Length">Length (minutes):</label></td>
+                    <td><input asp-for="Length" /></td>
+                </tr>
+                <br />
+                <br />
+            </table>
+            <label asp-for="Category">Category:</label>
+            <select asp-for="CategoryId">
+                <option value="">Select a Category</option>
+                @foreach (Category c in ViewBag.Categories)
+                {
+                    <option value="@c.CategoryId">@c.CategoryName</option>
+                }
+
+            </select>
+
+            <br /><br />
+            <input type="submit" value="Submit" />
+            <div asp-validation-summary="All"></div>
+        </form>
+    </fieldset>
+</div>

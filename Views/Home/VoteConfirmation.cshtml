@@ -1,0 +1,21 @@
+﻿@{
+}
+
+@model Movie
+
+<h1 style="padding-left:300px">Please confirm:</h1>
+<br />
+<br />
+<h2>Vote for <i>@Model.Title</i>?</h2>
+<h6 style="padding-left: 40px">Length (minutes): @Model.Length</h6>
+<br />
+<br />
+
+
+<fieldset>
+    <form method="post" asp-action="Vote">
+        <button type="submit" class="btn btn-small btn-success">Yes</button>
+        <a asp-controller="Home" asp-action="Index" class="btn btn-small btn-primary">Cancel</a>
+        <input type="hidden" asp-for="MovieId" />
+    </form>
+</fieldset>
