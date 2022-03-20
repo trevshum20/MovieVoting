@@ -27,7 +27,18 @@ namespace MovieVoting.Controllers
         {
             var movies = MovieContext.responses
                 .Include(x => x.Category)
+                .Where(x => x.Voting == true)
                 .OrderByDescending(x => x.NumVotes)
+                .ToList();
+
+            return View(movies);
+        }
+
+        public IActionResult Admin()
+        {
+            var movies = MovieContext.responses
+                .Include(x => x.Category)
+                .OrderBy(x => x.Title)
                 .ToList();
 
             return View(movies);
@@ -63,7 +74,7 @@ namespace MovieVoting.Controllers
 
             var movie = MovieContext.responses.Single(x => x.MovieId == movieid);
 
-            return View("AddMovie", movie);
+            return View("Edit", movie);
         }
 
         [HttpPost]
@@ -72,7 +83,7 @@ namespace MovieVoting.Controllers
             MovieContext.Update(bruh);
             MovieContext.SaveChanges();
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Admin");
         }
 
 
@@ -82,7 +93,7 @@ namespace MovieVoting.Controllers
         {
             MovieContext.responses.Remove(ar);
             MovieContext.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Admin");
         }
 
         [HttpPost]
@@ -106,6 +117,73 @@ namespace MovieVoting.Controllers
         {
             var movie = MovieContext.responses.Single(x => x.MovieId == movieid);
             return View(movie);
+        }
+
+        [HttpGet]
+        public IActionResult Watched()
+        {
+            var movies = MovieContext.responses
+                .Include(x => x.Category)
+                .OrderBy(x => x.Title)
+                .Where(x => x.Watched == true)
+                .ToList();
+
+            return View(movies);
+        }
+
+        [HttpGet]
+        public IActionResult WatchedDate(int movieid)
+        {
+            var movie = MovieContext.responses.Single(x => x.MovieId == movieid);
+            return View(movie);
+        }
+
+        [HttpPost]
+        public IActionResult Watched(int movieid, string watchdate)
+        {
+            MovieContext.responses.Single(x => x.MovieId == movieid).Watched = true;
+            MovieContext.responses.Single(x => x.MovieId == movieid).DateWatched = watchdate;
+            MovieContext.SaveChanges();
+            return RedirectToAction("Watched");
+        }
+
+        [HttpGet]
+        public IActionResult WantWatch()
+        {
+            var movies = MovieContext.responses
+                .Include(x => x.Category)
+                .OrderBy(x => x.Title)
+                .Where(x => x.Watched == false)
+                .Where(x => x.Voting == false)
+                .ToList();
+
+            return View(movies);
+        }
+
+        [HttpPost]
+        public IActionResult WantWatch(int movieid)
+        {
+            MovieContext.responses.Single(x => x.MovieId == movieid).Watched = false;
+            MovieContext.responses.Single(x => x.MovieId == movieid).DateWatched = "";
+            MovieContext.SaveChanges();
+            return RedirectToAction("Watched");
+        }
+
+        [HttpPost]
+        public IActionResult MoveToVote(int movieid)
+        {
+            MovieContext.responses.Single(x => x.MovieId == movieid).Voting = true;
+            MovieContext.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public IActionResult RemoveFromVote(int movieid)
+        {
+            MovieContext.responses.Single(x => x.MovieId == movieid).Voting = false;
+            MovieContext.responses.Single(x => x.MovieId == movieid).NumVotes = 0;
+            MovieContext.SaveChanges();
+            return RedirectToAction("Index");
         }
     }
 }

@@ -8,8 +8,8 @@ using MovieVoting.Models;
 namespace MovieVoting.Migrations
 {
     [DbContext(typeof(AddMovieContext))]
-    [Migration("20220319042314_initial")]
-    partial class initial
+    [Migration("20220319220642_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -59,7 +59,7 @@ namespace MovieVoting.Migrations
                         new
                         {
                             CategoryId = 6,
-                            CategoryName = "Miscellaneious"
+                            CategoryName = "Miscellaneous"
                         },
                         new
                         {
@@ -82,6 +82,9 @@ namespace MovieVoting.Migrations
                     b.Property<int>("CategoryId")
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("DateWatched")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("Length")
                         .IsRequired()
                         .HasColumnType("TEXT");
@@ -93,11 +96,59 @@ namespace MovieVoting.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<bool>("Voting")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("Watched")
+                        .HasColumnType("INTEGER");
+
                     b.HasKey("MovieId");
 
                     b.HasIndex("CategoryId");
 
                     b.ToTable("responses");
+
+                    b.HasData(
+                        new
+                        {
+                            MovieId = 1,
+                            CategoryId = 1,
+                            Length = "126",
+                            NumVotes = 0,
+                            Title = "Karate Kid",
+                            Voting = true,
+                            Watched = false
+                        },
+                        new
+                        {
+                            MovieId = 2,
+                            CategoryId = 1,
+                            Length = "152",
+                            NumVotes = 0,
+                            Title = "The Dark Knight",
+                            Voting = true,
+                            Watched = false
+                        },
+                        new
+                        {
+                            MovieId = 3,
+                            CategoryId = 8,
+                            Length = "155",
+                            NumVotes = 0,
+                            Title = "Dune",
+                            Voting = true,
+                            Watched = false
+                        },
+                        new
+                        {
+                            MovieId = 4,
+                            CategoryId = 7,
+                            Length = "124",
+                            NumVotes = 0,
+                            Title = "The Notebook",
+                            Voting = false,
+                            Watched = false
+                        });
                 });
 
             modelBuilder.Entity("MovieVoting.Models.Movie", b =>

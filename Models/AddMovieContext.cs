@@ -23,11 +23,64 @@ namespace MovieVoting.Models
                 new Category { CategoryId = 3, CategoryName = "Drama" },
                 new Category { CategoryId = 4, CategoryName = "Family" },
                 new Category { CategoryId = 5, CategoryName = "Horror / Suspense" },
-                new Category { CategoryId = 6, CategoryName = "Miscellaneious" },
+                new Category { CategoryId = 6, CategoryName = "Miscellaneous" },
                 new Category { CategoryId = 7, CategoryName = "Romantic" },
                 new Category { CategoryId = 8, CategoryName = "Thriller" }
             );
-                
+
+            _ = mb.Entity<Movie>().HasData(
+
+                new Movie
+                {
+                    MovieId = 1,
+                    CategoryId = 1,
+                    Title = "Karate Kid",
+                    Length = "126",
+                    NumVotes = 0,
+                    Watched = false,
+                    Voting = true,
+                    
+
+
+
+                },
+
+                new Movie
+                {
+                    MovieId = 2,
+                    CategoryId = 1,
+                    Title = "The Dark Knight",
+                    Length = "152",
+                    NumVotes = 0,
+                    Watched = false,
+                    Voting = true
+
+                },
+
+                new Movie
+                {
+                    MovieId = 3,
+                    CategoryId = 8,
+                    Title = "Dune",
+                    Length = "155",
+                    NumVotes = 0,
+                    Watched = false,
+                    Voting = true
+
+                },
+
+                new Movie
+                {
+                    MovieId = 4,
+                    CategoryId = 7,
+                    Title = "The Notebook",
+                    Length = "124",
+                    NumVotes = 0,
+                    Watched = false,
+                    Voting = false
+
+                }
+            );
         }
     }
 }

@@ -1,0 +1,42 @@
+﻿@{
+}
+
+@model List<Movie>
+
+<h1 style="text-align: center" >Previously Watched Movies</h1><br /><br />
+
+<table class="table table-sm table-striped ">
+    <thead class="thead-dark">
+        <tr>
+            <td></td>
+            @*<td></td>*@
+            <td>Title</td>
+            <td>Category</td>
+            <td>Length (minutes)</td>
+            <td>Watched</td>
+            <td>Date Last Watched</td>
+            <td></td>
+            <td></td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var m in Model)
+        {
+        <tr>
+            <td><a asp-controller="Home" asp-action="MoveToVote" asp-route-movieid="@m.MovieId" class="btn btn-primary btn-small btn-info">Move to Vote</a></td>
+            <td>@m.Title</td>
+            <td>@m.Category.CategoryName</td>
+            <td>@m.Length</td>
+            <td>@m.Watched</td>
+            <td>@m.DateWatched</td>
+            <td>
+                <form method="post" asp-action="WantWatch" asp-route-movieid="@m.MovieId"><button class="btn btn-small btn-danger" type="submit" value="Submit">Not Watched</button></form>
+            </td>
+        </tr>
+
+        }
+
+    </tbody>
+
+
+</table>

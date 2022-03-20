@@ -1,0 +1,50 @@
+﻿@{
+}
+
+@model List<Movie>
+
+<h1 style="text-align: center">Movies We Want to Watch</h1><br /><br />
+
+<table class="table table-sm table-striped ">
+    <thead class="thead-dark">
+        <tr>
+            <td></td>
+            <td>Title</td>
+            <td>Category</td>
+            <td>Length (minutes)</td>
+            <td>Watched</td>
+
+            <td></td>
+            <td></td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var m in Model)
+        {
+        <tr>
+            <td>
+                <form method="post" asp-action="MoveToVote" asp-route-movieid="@m.MovieId"><button class="btn btn-small btn-success" type="submit" value="Submit">Move to Vote</button></form>
+            </td>
+            @*<td><a asp-controller="Home" asp-action="MoveToVote" asp-route-movieid="@m.MovieId" class="btn btn-primary btn-small btn-info">Move to Vote</a></td>*@
+            <td>@m.Title</td>
+            <td>@m.Category.CategoryName</td>
+            <td>@m.Length</td>
+            <td>@m.Watched</td>
+
+            @*<td>
+            <form method="post" asp-action="Watched" asp-route-movieid="@m.MovieId"><button class="btn btn-small btn-danger" type="submit" value="Submit">Watched</button></form>
+            </td>*@
+            <td><a asp-controller="Home" asp-action="WatchedDate" asp-route-movieid="@m.MovieId" class="btn btn-primary btn-small btn-info">Watched</a></td>
+        </tr>
+
+        }
+
+    </tbody>
+
+
+</table>
+
+<br /><br />
+<form method="get">
+    <button type="submit" class="btn btn-small btn-success" asp-action="AddMovie">Add A Movie</button>
+</form>

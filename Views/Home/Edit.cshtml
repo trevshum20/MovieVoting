@@ -1,10 +1,10 @@
-﻿@* Trevor Shumway, Wed Jan 26*@
+﻿@* Trevor Shumway, Mar 20*@
 @{
-    ViewData["Title"] = "Add a Movie";
+    ViewData["Title"] = "Edit a Movie";
 }
 @model MovieVoting.Models.Movie
 <div>
-    <h1 style="text-align: center" >Add a movie to be voted on!</h1>
+    <h1 style="text-align: center">Add a movie to be voted on!</h1>
     <fieldset>
         <form method="post">
             <table>
@@ -17,8 +17,32 @@
                     <td><label asp-for="Length">Length (minutes):</label></td>
                     <td><input asp-for="Length" /></td>
                 </tr>
-                <br />
-                <br />
+
+                <tr>
+                    <td><label asp-for="Length">Length (minutes):</label></td>
+                    <td><input asp-for="Length" /></td>
+                </tr>
+
+                <tr>
+                    <td><label asp-for="NumVotes">Number of Votes:</label></td>
+                    <td><input asp-for="NumVotes" /></td>
+                </tr>
+
+                <tr>
+                    <td><label asp-for="Watched">Watched:</label></td>
+                    <td><input type="checkbox" asp-for="Watched" /></td>
+                </tr>
+
+                <tr>
+                    <td><label asp-for="Voting">Voting:</label></td>
+                    <td><input type="checkbox" asp-for="Voting" /></td>
+                </tr>
+
+                <tr>
+                    <td><label asp-for="DateWatched">Date Last Watched:</label></td>
+                    <td><input asp-for="DateWatched" /></td>
+                </tr>
+
             </table>
             <label asp-for="Category">Category:</label>
             <select asp-for="CategoryId">
