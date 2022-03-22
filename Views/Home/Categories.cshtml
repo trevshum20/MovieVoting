@@ -1,0 +1,54 @@
+﻿@{
+}
+
+@model List<Category>
+    
+        
+<div style="text-align: right;">
+    <a class="btn btn-sm btn-info" asp-action="Admin">Movies</a>
+    <a class="btn btn-sm btn-primary" href="/account/logout" style="background-color: purple;">Log Out</a>
+
+</div>
+
+    <h1 style="text-align: center; font-size: 70px; font-family: papyrus;" ><b>Categories</b></h1>
+
+    
+<br /><br />
+<div class="col-3"></div>
+    <table class="table table-sm table-striped ">
+        <thead class="thead-dark">
+            <tr>
+
+                
+                <td></td>
+                <td style="font-size: 30px;"><b>Category Name</b></td>
+                <td></td>
+                <td></td>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var c in Model)
+            {
+            <tr>
+
+
+                <td><input type="hidden" value="@c.CategoryId" /></td>
+                <td>@c.CategoryName</td>
+                <td><a asp-controller="Home" asp-action="EditCategory" asp-route-categoryid="@c.CategoryId" class="btn btn-primary btn-small btn-Secondary">Edit</a></td>
+                <td>
+                    <form method="post" asp-action="DeleteCategory" asp-route-categoryid="@c.CategoryId"><button class="btn btn-small btn-danger" type="submit" value="Submit">Delete</button></form>
+                </td>
+            </tr>
+
+            }
+
+        </tbody>
+    </table>
+    <div class="col-3"></div>
+
+    <br />
+    <br />
+    <form method="get">
+        <button type="submit" class="btn btn-small btn-info" asp-action="AddCategory">Add A Category</button>
+    </form>

@@ -1,0 +1,28 @@
+﻿@{
+}
+
+@model MovieVoting.Models.Category
+
+<div>
+    <h1 style="text-align: center; font-size: 70px; font-family: papyrus;"><b>Add a Category</b></h1>
+    <fieldset>
+        <form method="post">
+            <input type="hidden" asp-for="CategoryId" />
+            <table>
+                <tr>
+                    <td><label asp-for="CategoryName">Category Name:</label></td>
+                    <td><input asp-for="CategoryName" /></td>
+                </tr>
+
+
+
+            </table>
+
+
+            <br /><br>
+            <input type="submit" value="Submit" asp-action="EditCategory" />
+            <a href="/home/categories" class="btn btn-sm" style="background-color: red;">Cancel</a>
+            <div asp-validation-summary="All"></div>
+        </form>
+    </fieldset>
+</div>

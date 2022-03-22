@@ -1,27 +1,28 @@
 ﻿@* Trevor Shumway, Wed Jan 26*@
 @{
-    ViewData["Title"] = "Add a Movie";
+    ViewData["Title"] = "Add a Movie |";
 }
 @model MovieVoting.Models.Movie
 <div>
-    <h1 style="text-align: center" >Add a movie to be voted on!</h1>
+    <br />
+    <h1 style="text-align: center; font-size: 70px; font-family: papyrus;"><b>Add a Movie!</b></h1>
     <fieldset>
         <form method="post">
-            <table>
+            <table style="text-align: center">
                 <tr>
                     <td><label asp-for="Title">Title:</label></td>
-                    <td><input asp-for="Title" id="title" /></td>
+                    <td><input asp-for="Title" id="title" required/></td>
                 </tr>
 
                 <tr>
                     <td><label asp-for="Length">Length (minutes):</label></td>
-                    <td><input asp-for="Length" /></td>
+                    <td><input asp-for="Length" required/></td>
                 </tr>
                 <br />
                 <br />
             </table>
             <label asp-for="Category">Category:</label>
-            <select asp-for="CategoryId">
+            <select asp-for="CategoryId" required>
                 <option value="">Select a Category</option>
                 @foreach (Category c in ViewBag.Categories)
                 {

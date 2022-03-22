@@ -3,16 +3,16 @@
 
 @model List<Movie>
 
-<h1 style="text-align: center">Movies We Want to Watch</h1><br /><br />
+<h1 style="text-align: center; font-size: 70px; font-family: papyrus;"><b>Movies we want to watch</b></h1>
 
 <table class="table table-sm table-striped ">
     <thead class="thead-dark">
         <tr>
             <td></td>
-            <td>Title</td>
-            <td>Category</td>
-            <td>Length (minutes)</td>
-            <td>Watched</td>
+            <td style="font-size: 23px;">Title</td>
+            <td style="font-size: 23px;">Category</td>
+            <td style="font-size: 23px;">Length (minutes)</td>
+            <td style="font-size: 23px;">Watched</td>
 
             <td></td>
             <td></td>
@@ -26,7 +26,7 @@
                 <form method="post" asp-action="MoveToVote" asp-route-movieid="@m.MovieId"><button class="btn btn-small btn-success" type="submit" value="Submit">Move to Vote</button></form>
             </td>
             @*<td><a asp-controller="Home" asp-action="MoveToVote" asp-route-movieid="@m.MovieId" class="btn btn-primary btn-small btn-info">Move to Vote</a></td>*@
-            <td>@m.Title</td>
+            <td >@m.Title</td>
             <td>@m.Category.CategoryName</td>
             <td>@m.Length</td>
             <td>@m.Watched</td>
@@ -46,5 +46,5 @@
 
 <br /><br />
 <form method="get">
-    <button type="submit" class="btn btn-small btn-success" asp-action="AddMovie">Add A Movie</button>
+    <button type="submit" class="btn btn-small btn-info" asp-action="AddMovie">Add A Movie</button>
 </form>

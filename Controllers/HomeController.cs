@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -34,6 +35,7 @@ namespace MovieVoting.Controllers
             return View(movies);
         }
 
+        [Authorize]
         public IActionResult Admin()
         {
             var movies = MovieContext.responses
@@ -67,6 +69,67 @@ namespace MovieVoting.Controllers
             }
         }
 
+        public IActionResult Categories()
+        {
+            var categories = MovieContext.Categories.ToList();
+            return View(categories);
+        }
+
+        [HttpGet]
+        public IActionResult AddCategory()
+        {
+            
+            //ViewBag.Categories = MovieContext.Categories.ToList();
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult AddCategory(Category req)
+        {
+            if (ModelState.IsValid)
+            {
+                MovieContext.Add(req);
+                MovieContext.SaveChanges();
+                return RedirectToAction("Categories");
+            }
+            else
+            {
+                ViewBag.Categories = MovieContext.Categories.ToList();
+                return View(req);
+            }
+        }
+
+
+        [HttpGet]
+        public IActionResult EditCategory(int categoryid)
+        {
+            //ViewBag.Categories = MovieContext.Categories.ToList();
+
+            var category = MovieContext.Categories.Single(x => x.CategoryId == categoryid);
+
+            return View("AddCategory", category);
+        }
+
+        
+        [HttpPost]
+        public IActionResult EditCategory(Category bruh)
+        {
+            MovieContext.Update(bruh);
+            MovieContext.SaveChanges();
+
+            return RedirectToAction("Categories");
+        }
+
+        [HttpPost]
+        public IActionResult DeleteCategory(Category ar)
+        {
+            MovieContext.Categories.Remove(ar);
+            MovieContext.SaveChanges();
+            return RedirectToAction("Categories");
+        }
+
+
+        [Authorize]
         [HttpGet]
         public IActionResult Edit(int movieid)
         {
@@ -77,6 +140,7 @@ namespace MovieVoting.Controllers
             return View("Edit", movie);
         }
 
+        [Authorize]
         [HttpPost]
         public IActionResult Edit(Movie bruh)
         {
@@ -87,7 +151,7 @@ namespace MovieVoting.Controllers
         }
 
 
-
+        [Authorize]
         [HttpPost]
         public IActionResult Delete(Movie ar)
         {
@@ -96,6 +160,7 @@ namespace MovieVoting.Controllers
             return RedirectToAction("Admin");
         }
 
+        
         [HttpPost]
         public IActionResult Vote(int movieid)
         {
@@ -104,6 +169,7 @@ namespace MovieVoting.Controllers
             return RedirectToAction("Index");
         }
 
+        [Authorize]
         [HttpPost]
         public IActionResult ResetVote(int movieid)
         {
@@ -177,6 +243,7 @@ namespace MovieVoting.Controllers
             return RedirectToAction("Index");
         }
 
+        [Authorize]
         [HttpPost]
         public IActionResult RemoveFromVote(int movieid)
         {

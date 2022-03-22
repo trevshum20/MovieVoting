@@ -2,7 +2,7 @@
 
 namespace MovieVoting.Migrations
 {
-    public partial class Initial : Migration
+    public partial class Funny : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -25,8 +25,8 @@ namespace MovieVoting.Migrations
                 {
                     MovieId = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    Title = table.Column<string>(nullable: false),
-                    CategoryId = table.Column<int>(nullable: false),
+                    Title = table.Column<string>(nullable: true),
+                    CategoryId = table.Column<int>(nullable: true),
                     Length = table.Column<string>(nullable: false),
                     NumVotes = table.Column<int>(nullable: false),
                     Watched = table.Column<bool>(nullable: false),

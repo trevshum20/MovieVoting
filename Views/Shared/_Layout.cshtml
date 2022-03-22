@@ -6,13 +6,13 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] Movie Voting</title>
-    <link rel="icon" href="https://media.istockphoto.com/vectors/movie-time-vector-illustration-cinema-poster-concept-on-red-round-vector-id911590226?s=170667a">
+    <link rel="icon" href="https://freestencilgallery.com/wp-content/uploads/2017/04/Halo-Logo-Stencil-thumb.jpg">
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark border-bottom box-shadow mb-3">
             <div class="container">
 
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
@@ -22,25 +22,33 @@
                         </li>*@
 
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Vote</a>
+                            <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Index">Vote</a>
+                        </li>
+
+                        @*<li class="nav-item">
+                            <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="AddMovie">Add Movie</a>
+                        </li>*@
+
+                        <li class="nav-item">
+                            <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Watched">Previously Watched</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="AddMovie">Add Movie</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Watched">Previously Watched</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="WantWatch">Want to Watch</a>
+                            <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="WantWatch">Want to Watch</a>
                         </li>
 
                     </ul>
                 </div>
+                <div style="text-align: right;">
+                    <a class="btn btn-sm btn-primary" href="/home/admin" style="background-color: turquoise;">Admin</a>
+                </div>
+
+
             </div>
         </nav>
+        @*<div class="bg-dark text-white p-2">
+            <span class="navbar-collapse m-lg-2">Movie Voting</span>
+        </div>*@
     </header>
     <div class="container">
         <main role="main" class="pb-3">

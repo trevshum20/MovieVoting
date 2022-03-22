@@ -1,11 +1,11 @@
 ﻿@{
-    ViewData["Title"] = "Vote on Movies";
+    ViewData["Title"] = "Vote on Movies |";
 }
 
 @model List<Movie>
 
 <div class="text-center">
-    <h1 class="display-4">Vote</h1>
+    <h1 style="text-align: center; font-size: 70px; font-family: papyrus;"><b>Vote</b></h1>
 </div>
 <br /><br />
 <table class="table table-sm table-striped ">
@@ -13,10 +13,10 @@
         <tr>
             @*<td></td>*@
 
-            <td>Number of Votes</td>
-            <td>Title</td>
-            <td>Category</td>
-            <td>Length (minutes)</td>
+            <td style="font-size: 23px;" >Number of Votes</td>
+            <td style="font-size: 23px;" >Title</td>
+            <td style="font-size: 23px;" >Category</td>
+            <td style="font-size: 23px;" >Length (minutes)</td>
             <td></td>
             <td></td>
             <td></td>
@@ -42,7 +42,7 @@
                 <form method="post" asp-action="ResetVote" asp-route-movieid="@m.MovieId"><button class="btn btn-small btn-dark" type="submit" value="Submit">Reset Vote</button></form>
             </td>
             <td>
-                <form method="post" asp-action="RemoveFromVote" asp-route-movieid="@m.MovieId"><button class="btn btn-small btn-danger" type="submit">Remove</button></form>
+                <form method="post" asp-action="RemoveFromVote" asp-route-movieid="@m.MovieId"><button class="btn btn-small btn-danger" type="submit">Remove From Voting</button></form>
             </td>
         </tr>
 
@@ -54,5 +54,5 @@
     </table>
 <br /><br />
 <form method="get">
-    <button type="submit" class="btn btn-small btn-success" asp-action="AddMovie">Add A Movie</button>
+    <button type="submit" class="btn btn-small btn-info" asp-action="AddMovie">Add A Movie</button>
 </form>

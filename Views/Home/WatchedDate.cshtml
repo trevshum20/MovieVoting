@@ -3,7 +3,8 @@
 
 @model MovieVoting.Models.Movie
 
-<h1>When did we watch @Model.Title?</h1>
+
+<h1 style="text-align: center; font-size: 70px; font-family: papyrus;"><b>When did we watch @Model.Title?</b></h1>
 <br /><br />
 <form method="post" asp-action="Watched">
     <label asp-for="DateWatched">Date:</label>
