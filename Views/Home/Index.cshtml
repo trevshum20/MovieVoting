@@ -41,9 +41,10 @@
             <td>
                 <form method="post" asp-action="ResetVote" asp-route-movieid="@m.MovieId"><button class="btn btn-small btn-dark" type="submit" value="Submit">Reset Vote</button></form>
             </td>
-            <td>
+            @*<td>
                 <form method="post" asp-action="RemoveFromVote" asp-route-movieid="@m.MovieId"><button class="btn btn-small btn-danger" type="submit">Remove From Voting</button></form>
-            </td>
+            </td>*@
+            <td><a class="btn btn-sm btn-danger" asp-controller="Home" asp-action="RemoveFromVote" asp-route-movieid="@m.MovieId">Remove From Voting</a></td>
         </tr>
 
         }

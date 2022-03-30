@@ -65,9 +65,19 @@ namespace MovieVoting
 
             app.UseEndpoints(endpoints =>
             {
+
+
+
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+                //endpoints.MapControllerRoute(
+                //    name: "removeAdmin",
+                //    pattern: "{controller=Home}/{action=RemoveFromVote}/{movieid}",
+                //    defaults: new { Controller = "Home", action = "Index" }
+                //    );
+
             });
 
             IdentitySeedData.EnsurePopulated(app);

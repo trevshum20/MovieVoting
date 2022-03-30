@@ -72,8 +72,8 @@ namespace MovieVoting.Models
                 new Movie
                 {
                     MovieId = 4,
-                    CategoryId = 7,
-                    Title = "The Notebook",
+                    CategoryId = 4,
+                    Title = "Far and Away",
                     Length = "124",
                     NumVotes = 0,
                     Watched = false,

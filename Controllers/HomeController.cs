@@ -244,7 +244,7 @@ namespace MovieVoting.Controllers
         }
 
         [Authorize]
-        [HttpPost]
+        //[HttpPost]
         public IActionResult RemoveFromVote(int movieid)
         {
             MovieContext.responses.Single(x => x.MovieId == movieid).Voting = false;
